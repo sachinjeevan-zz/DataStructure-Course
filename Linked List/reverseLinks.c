@@ -13,25 +13,20 @@ void Rdisplay(struct Node *temp)
         Rdisplay(temp->next); 
     }
 }
-void reverseElement(struct Node* first, int len) // T(n) = 8n + 7
+struct Node* reverseLinks(struct Node* first) // T(n) = 4n + 9
 {
-    int arr[len],i=0; // 2 unit
-    struct Node* temp = first; // 1 unit
-    while(temp!=NULL) // n + 1 unit
+    struct Node *p,*q,*r; // 3 unit
+    p = first; // 1 unit
+    q = r = NULL; // 2 unit
+    while(p!=NULL) // n + 1 unit
     {
-        arr[i] = temp->data; // n unit
-        i++; // n unit
-        temp = temp->next; // n unit
+        r = q; // n unit
+        q = p; // n unit
+        p = p->next; // n unit
+        q->next = r; // n unit
     }
-    temp = first; // 1 unit
-    i--; // 1 unit
-
-    while(temp!=NULL) // n+1 unit
-    {
-        temp->data = arr[i]; // n unit
-        temp=temp->next; // n unit
-        i--; // n unit
-    }
+    first = q; // 1 unit
+    return first; // 1 unit
 
 }
 void create() 
@@ -56,7 +51,7 @@ void create()
         scanf("%d",&x); 
     }
 
-    reverseElement(First,len);
+    First = reverseLinks(First);
     Rdisplay(First);
 
 
